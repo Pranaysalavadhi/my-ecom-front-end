@@ -107,7 +107,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fangry-male-lion&psig=AOvVaw389etojM_p0uGHBOpLH_qi&ust=1742908391286000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNCfvvnloowDFQAAAAAdAAAAABAE">
+            <a className="navbar-brand" href="https://www.linkedin.com/in/pranaydeep-s">
               Pranay
             </a>
             <button
