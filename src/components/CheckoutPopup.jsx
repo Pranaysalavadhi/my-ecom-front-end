@@ -1,28 +1,51 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
 
-const CheckoutPopup = ({ show, handleClose, cartItems, totalPrice, handleCheckout }) => {
+const CheckoutPopup = ({ show, handleClose, cartItems = [], totalPrice, handleCheckout }) => {
   return (
-    <div className="checkoutPopup">
-   
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Checkout</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="checkout-items">
-          {cartItems.map((item) => (
-            <div key={item.id} className="checkout-item" style={{ display: 'flex', marginBottom: '10px' }}>
-              <img src={item.imageUrl} alt={item.name} className="cart-item-image" style={{ width: '150px', marginRight: '10px' }} />
-              <div>
-                <b><p>{item.name}</p></b>
-                <p>Quantity: {item.quantity}</p>
-                <p>Price: ${item.price * item.quantity}</p>
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="checkout-item"
+                style={{ display: "flex", marginBottom: "10px" }}
+              >
+                <img
+                  src={item.imageUrl || "placeholder-image-url"}
+                  alt={item.name}
+                  className="cart-item-image"
+                  style={{ width: "150px", marginRight: "10px" }}
+                />
+                <div>
+                  <b>
+                    <p>{item.name}</p>
+                  </b>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Price: ${item.price * item.quantity}</p>
+                </div>
               </div>
-            </div>
-          ))}
-          <div >
-            <h5 style={{color:'black' , display:'flex',justifyContent:'center',fontSize:'1.3rem', fontWeight:'bold'}} >Total: ${totalPrice}</h5>
+            ))
+          ) : (
+            <p>No items in the cart.</p>
+          )}
+          <div>
+            <h5
+              style={{
+                color: "black",
+                display: "flex",
+                justifyContent: "center",
+                fontSize: "1.3rem",
+                fontWeight: "bold",
+              }}
+            >
+              Total: ${totalPrice}
+            </h5>
           </div>
         </div>
       </Modal.Body>
@@ -35,7 +58,6 @@ const CheckoutPopup = ({ show, handleClose, cartItems, totalPrice, handleCheckou
         </Button>
       </Modal.Footer>
     </Modal>
-    </div>
   );
 };
 
