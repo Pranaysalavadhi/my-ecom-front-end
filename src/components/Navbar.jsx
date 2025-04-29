@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ onSelectCategory }) => {
   const getInitialTheme = () => {
@@ -60,9 +61,9 @@ const Navbar = ({ onSelectCategory }) => {
     <header>
       <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             ShopSphere
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -77,14 +78,14 @@ const Navbar = ({ onSelectCategory }) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/add_product">
+                <Link className="nav-link" to="/add_product">
                   Add Product
-                </a>
+                </Link>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -118,9 +119,9 @@ const Navbar = ({ onSelectCategory }) => {
               )}
             </button>
             <div className="d-flex align-items-center cart">
-              <a href="/cart" className="nav-link text-dark">
+              <Link to="/cart" className="nav-link text-dark">
                 <i className="bi bi-cart me-2">Cart</i>
-              </a>
+              </Link>
               <input
                 className="form-control me-2"
                 type="search"
@@ -134,12 +135,12 @@ const Navbar = ({ onSelectCategory }) => {
                   {searchResults.length > 0 ? (
                     searchResults.map((result) => (
                       <li key={result.id} className="list-group-item">
-                        <a
-                          href={`/product/${result.id}`}
+                        <Link
+                          to={`/product/${result.id}`}
                           className="search-result-link"
                         >
                           {result.name}
-                        </a>
+                        </Link>
                       </li>
                     ))
                   ) : (
