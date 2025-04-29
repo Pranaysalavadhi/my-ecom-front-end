@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
@@ -13,7 +13,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track authentication state
+  // Initialize based on sessionStorage
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    sessionStorage.getItem("isAuthenticated") === "true"
+  );
+
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleCategorySelect = (category) => {
@@ -21,14 +25,17 @@ function App() {
     console.log("Selected category:", category);
   };
 
+  const handleLogin = () => {
+    sessionStorage.setItem("isAuthenticated", "true");
+    setIsAuthenticated(true);
+  };
+
   return (
     <AppProvider>
       <BrowserRouter>
         {!isAuthenticated ? (
-          // Show AuthForm if the user is not authenticated
-          <AuthForm onLogin={() => setIsAuthenticated(true)} />
+          <AuthForm onLogin={handleLogin} />
         ) : (
-          // Show the rest of the app if the user is authenticated
           <>
             <Navbar onSelectCategory={handleCategorySelect} />
             <Routes>
