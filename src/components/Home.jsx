@@ -47,9 +47,42 @@ const Home = ({ selectedCategory }) => {
 
   if (isError) {
     return (
-      <h2 className="text-center" style={{ padding: "18rem" }}>
-        <img src={unplugged} alt="Error" style={{ width: "100px", height: "100px" }} />
-      </h2>
+      <div className="error-container" style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "60vh",
+        textAlign: "center",
+        padding: "20px"
+      }}>
+        <img 
+          src={unplugged} 
+          alt="Connection Error" 
+          style={{ 
+            width: "80px", 
+            height: "80px",
+            marginBottom: "20px",
+            opacity: "0.8"
+          }} 
+        />
+        <h3 style={{
+          color: "#dc3545",
+          fontSize: "1.5rem",
+          marginBottom: "10px",
+          fontWeight: "500"
+        }}>
+          Connection Error
+        </h3>
+        <p style={{
+          color: "#6c757d",
+          fontSize: "1rem",
+          maxWidth: "400px",
+          lineHeight: "1.5"
+        }}>
+          We're having trouble connecting to our servers. Please check your internet connection and try again.
+        </p>
+      </div>
     );
   }
 
@@ -65,16 +98,25 @@ const Home = ({ selectedCategory }) => {
       }}
     >
       {filteredProducts.length === 0 ? (
-        <h2
-          className="text-center"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          No Products Available
-        </h2>
+        <div style={{
+          gridColumn: "1 / -1",
+          textAlign: "center",
+          padding: "40px",
+          backgroundColor: "#f8f9fa",
+          borderRadius: "8px",
+          margin: "20px 0"
+        }}>
+          <p style={{
+            fontSize: "1rem",
+            color: "#6c757d",
+            lineHeight: "1.6"
+          }}>
+            <span style={{ fontSize: "1.2rem", display: "block", marginBottom: "10px" }}>🚀 Powered by AWS RDS</span>
+            Fetching data from a secure cloud database. This may take a few seconds — thank you for your patience!
+            <br />
+            Demonstrating real-world backend integration using MySQL on Amazon RDS
+          </p>
+        </div>
       ) : (
         filteredProducts.map((product) => {
           const { id, brand, name, price, productAvailable, imageUrl } = product;
