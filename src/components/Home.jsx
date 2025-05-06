@@ -1,3 +1,4 @@
+// Home.jsx
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -25,11 +26,7 @@ const Home = ({ selectedCategory }) => {
               const imageUrl = URL.createObjectURL(response.data);
               return { ...product, imageUrl };
             } catch (error) {
-              console.error(
-                "Error fetching image for product ID:",
-                product.id,
-                error
-              );
+              console.error("Error fetching image for product ID:", product.id, error);
               return { ...product, imageUrl: unplugged };
             }
           })
@@ -56,30 +53,9 @@ const Home = ({ selectedCategory }) => {
         textAlign: "center",
         padding: "20px"
       }}>
-        <img 
-          src={unplugged} 
-          alt="Connection Error" 
-          style={{ 
-            width: "80px", 
-            height: "80px",
-            marginBottom: "20px",
-            opacity: "0.8"
-          }} 
-        />
-        <h3 style={{
-          color: "#dc3545",
-          fontSize: "1.5rem",
-          marginBottom: "10px",
-          fontWeight: "500"
-        }}>
-          Connection Error
-        </h3>
-        <p style={{
-          color: "#6c757d",
-          fontSize: "1rem",
-          maxWidth: "400px",
-          lineHeight: "1.5"
-        }}>
+        <img src={unplugged} alt="Connection Error" style={{ width: "80px", height: "80px", marginBottom: "20px", opacity: "0.8" }} />
+        <h3 style={{ color: "#dc3545", fontSize: "1.5rem", marginBottom: "10px", fontWeight: "500" }}>Connection Error</h3>
+        <p style={{ color: "#6c757d", fontSize: "1rem", maxWidth: "400px", lineHeight: "1.5" }}>
           We're having trouble connecting to our servers. Please check your internet connection and try again.
         </p>
       </div>
@@ -137,10 +113,7 @@ const Home = ({ selectedCategory }) => {
               }}
               key={id}
             >
-              <Link
-                to={`/product/${id}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
+              <Link to={`/product/${id}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <img
                   src={imageUrl}
                   alt={name}
@@ -164,16 +137,10 @@ const Home = ({ selectedCategory }) => {
                   }}
                 >
                   <div>
-                    <h5
-                      className="card-title"
-                      style={{ margin: "0 0 10px 0", fontSize: "1.2rem" }}
-                    >
+                    <h5 className="card-title" style={{ margin: "0 0 10px 0", fontSize: "1.2rem" }}>
                       {name.toUpperCase()}
                     </h5>
-                    <i
-                      className="card-brand"
-                      style={{ fontStyle: "italic", fontSize: "0.8rem" }}
-                    >
+                    <i className="card-brand" style={{ fontStyle: "italic", fontSize: "0.8rem" }}>
                       {"~ " + brand}
                     </i>
                   </div>
@@ -187,8 +154,10 @@ const Home = ({ selectedCategory }) => {
                         marginBottom: "5px",
                       }}
                     >
-                      <i className="bi bi-currency-rupee"></i>
-                      {price}
+                      {new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      }).format(price)}
                     </h5>
                   </div>
                   <button
